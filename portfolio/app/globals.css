@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* AMOLED & Cyberpunk palette */
+  --color-bg-primary: #000000;
+  --color-bg-card: #0a0a0a;
+  --color-surface-start: rgba(255,255,255,0.03);
+  --color-surface-end: rgba(255,255,255,0.07);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: #606060;
+  --color-accent-primary: #00ffb3;
+  --color-accent-secondary: #bf00ff;
+  --color-accent-tertiary: #ff003c;
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-neon-blue: #00f0ff;
+  --color-neon-purple: #9d00ff;
+  --color-neon-pink: #ff00ea;
+  
+  --color-cyber-dark: #000000; /* AMOLED Black */
+  --color-cyber-darker: #000000;
+  --color-cyber-card: rgba(10, 10, 10, 0.4);
+  --color-cyber-border: rgba(255, 255, 255, 0.1);
+
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; filter: blur(40px); }
+    50% { opacity: 0.6; filter: blur(70px); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+  }
+
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+}
+
+/* ─── Base Styles ─────────────────────────────────────── */
+
+@layer base {
+  * {
+    @apply border-white/5;
+  }
+
+  html {
+    @apply scroll-smooth h-full bg-black;
+  }
+
+  body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+
+    @apply bg-black text-white antialiased overflow-x-hidden min-h-screen selection:bg-neon-blue/30 selection:text-white;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ─── Glassmorphism & Custom Utilities ─────────────────── */
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-3xl border border-white/5;
+  }
+  
+  .glass-card {
+    @apply bg-white/[0.02] backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.8)];
+  }
+
+  /* Advanced Cyberpunk Overlay */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .scanlines {
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.02),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.02)
+    );
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+  }
+
+  .neon-text-blue {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .neon-border-blue {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1);
+  }
+
+  .neon-border-purple {
+    box-shadow: 0 0 20px rgba(157, 0, 255, 0.2), inset 0 0 10px rgba(157, 0, 255, 0.1);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400;
+  }
+
+  .text-neon-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ─── Animation Classes ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
