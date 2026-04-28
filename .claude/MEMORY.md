@@ -1,1 +1,0 @@
-- [User is Danish](user_danish.md) — User is Danish
