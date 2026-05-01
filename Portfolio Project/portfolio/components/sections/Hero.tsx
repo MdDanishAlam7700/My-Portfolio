@@ -81,7 +81,20 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="lg:col-span-2 hidden lg:flex flex-col gap-12"
           >
-            <div className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-sm">
+            {/* 3D Planet Visual */}
+            <div className="relative h-[400px] w-full flex items-center justify-center">
+              <div className="absolute inset-0 z-0">
+                <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                  <Suspense fallback={null}>
+                    <ambientLight intensity={0.5} />
+                    <pointLight position={[10, 10, 10]} intensity={2} />
+                    <Planet />
+                  </Suspense>
+                </Canvas>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-sm relative z-10">
               <div className="text-[10px] font-mono text-neon-blue tracking-[0.4em] uppercase mb-4 opacity-50">Identity</div>
               <p className="text-white text-sm leading-relaxed font-light italic">
                 "Solving real-world business problems through data-driven architectures, 

@@ -108,8 +108,8 @@ function OrbitingMoons() {
   return (
     <>
       <mesh ref={moon1Ref}>
-        <sphereGeometry args={[0.15, 32, 32]} />
-        <meshStandardMaterial color="#00f0ff" emissive="#00f0ff" emissiveIntensity={2} />
+        <sphereGeometry args={[0.08, 32, 32]} />
+        <meshStandardMaterial color="#00f0ff" emissive="#00f0ff" emissiveIntensity={1} />
       </mesh>
       <mesh ref={moon2Ref}>
         <sphereGeometry args={[0.2, 32, 32]} />
@@ -148,11 +148,11 @@ function InteractivePlanet() {
         {/* Planet Core */}
         <Sphere ref={meshRef} args={[1.5, 64, 64]} scale={1.2}>
           <meshStandardMaterial
-            color="#101010"
-            metalness={0.9}
-            roughness={0.1}
+            color="#1a1a1a"
+            metalness={1}
+            roughness={0}
             emissive="#00f0ff"
-            emissiveIntensity={0.1}
+            emissiveIntensity={0.2}
           />
         </Sphere>
         
@@ -194,6 +194,7 @@ function InteractivePlanet() {
 }
 
 function CursorGlow() {
+  const [moved, setMoved] = useState(false);
   const mouseX = useSpring(0, { stiffness: 50, damping: 20 });
   const mouseY = useSpring(0, { stiffness: 50, damping: 20 });
 
@@ -201,10 +202,13 @@ function CursorGlow() {
     const handleMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+      if (!moved) setMoved(true);
     };
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, moved]);
+
+  if (!moved) return null;
 
   return (
     <motion.div
