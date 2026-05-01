@@ -130,15 +130,12 @@ function InteractivePlanet() {
     meshRef.current.rotation.y = time * 0.15;
     
     // Smooth Mouse Follow with Damping
-    const targetX = state.mouse.x * 3;
-    const targetY = state.mouse.y * 3;
-    
-    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.05);
-    groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, targetY, 0.05);
+    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, state.mouse.x * 2, 0.05);
+    groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, state.mouse.y * 2, 0.05);
     
     // Rotate the whole system based on mouse
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, state.mouse.y * 0.5, 0.05);
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, state.mouse.x * 0.5, 0.05);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, state.mouse.y * 0.3, 0.05);
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, state.mouse.x * 0.3, 0.05);
 
     // Parallax on Scroll
     const scrollY = typeof window !== "undefined" ? window.scrollY : 0;
@@ -151,10 +148,11 @@ function InteractivePlanet() {
         {/* Planet Core */}
         <Sphere ref={meshRef} args={[1.5, 64, 64]} scale={1.2}>
           <meshStandardMaterial
-            color="#050505"
-            metalness={0.8}
-            roughness={0.2}
-            emissive="#000000"
+            color="#101010"
+            metalness={0.9}
+            roughness={0.1}
+            emissive="#00f0ff"
+            emissiveIntensity={0.1}
           />
         </Sphere>
         
