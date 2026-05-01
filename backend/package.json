@@ -1,0 +1,27 @@
+{
+  "name": "task-tracker-backend",
+  "version": "1.0.0",
+  "description": "Express.js backend for Task Tracker application",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^5.0.0",
+    "mongoose": "^8.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "body-parser": "^1.20.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.0",
+    "@types/node": "^20.0.0",
+    "@types/body-parser": "^1.19.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "nodemon": "^3.0.0"
+  }
+}
