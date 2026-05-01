@@ -25,7 +25,7 @@ export const portfolioData = {
     email: "danishalam7700@gmail.com",
     github: "https://github.com/MdDanishAlam7700",
     linkedin: "https://www.linkedin.com/in/md-danish-alam-76b565213/",
-    resume: "/resume.pdf"
+    resume: "/Md_Danish_Alam_Resume.pdf"
   },
   
   hero: {
