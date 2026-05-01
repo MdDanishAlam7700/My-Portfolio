@@ -7,7 +7,6 @@ import Impact from "@/components/sections/Impact";
 import Experience from "@/components/sections/Experience";
 import Certifications from "@/components/sections/Certifications";
 import Contact from "@/components/sections/Contact";
-import { motion } from "framer-motion";
 
 export default function Home() {
   return (

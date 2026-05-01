@@ -17,6 +17,7 @@ export default function CustomCursor() {
   const haloY = useSpring(cursorY, { damping: 40, stiffness: 80 });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);

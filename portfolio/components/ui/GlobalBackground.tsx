@@ -1,13 +1,13 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect, Suspense } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useRef, useState, useEffect, Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Sphere, MeshDistortMaterial, Float } from "@react-three/drei";
 import * as THREE from "three";
 import { useScroll, motion, useSpring, useTransform } from "framer-motion";
 
 function Particles({ count = 2000 }) {
-  const points = useMemo(() => {
+  const [points] = useState(() => {
     const p = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       p[i * 3] = (Math.random() - 0.5) * 30;
@@ -15,7 +15,7 @@ function Particles({ count = 2000 }) {
       p[i * 3 + 2] = (Math.random() - 0.5) * 30;
     }
     return p;
-  }, [count]);
+  });
 
   const ref = useRef<THREE.Points>(null);
   const { scrollYProgress } = useScroll();
@@ -84,7 +84,6 @@ function GlobalPlanet() {
 }
 
 function CursorGlow() {
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const springX = useSpring(0, { stiffness: 50, damping: 20 });
   const springY = useSpring(0, { stiffness: 50, damping: 20 });
 

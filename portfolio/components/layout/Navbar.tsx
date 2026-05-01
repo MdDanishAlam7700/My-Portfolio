@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Zap, Download, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { portfolioData } from "@/data/portfolio";
 import NeonButton from "@/components/ui/NeonButton";
 
@@ -37,14 +38,14 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <a href="/" aria-label="Home" className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">
+          <Link href="/" aria-label="Home" className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue">
             <div className="w-8 h-8 rounded-lg bg-neon-blue flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.4)] group-hover:scale-110 transition-transform">
               <Zap size={18} className="text-black" fill="currentColor" />
             </div>
             <span className="font-bold text-sm tracking-widest text-white">
               DANISH<span className="text-neon-blue">.DATA</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">

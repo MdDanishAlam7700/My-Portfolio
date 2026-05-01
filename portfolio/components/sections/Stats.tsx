@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView, useSpring, useTransform } from "framer-motion";
-import { CheckCircle2, TrendingUp, Zap, Globe } from "lucide-react";
+import { CheckCircle2, TrendingUp, Zap, Globe, LucideIcon } from "lucide-react";
 
 interface StatItemProps {
   value: number;
   suffix?: string;
   label: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
 }
 

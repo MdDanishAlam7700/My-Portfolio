@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Sphere, MeshDistortMaterial, Float, MeshWobbleMaterial } from "@react-three/drei";
+import { Sphere, MeshDistortMaterial, Float } from "@react-three/drei";
 import * as THREE from "three";
 
 export default function Planet() {

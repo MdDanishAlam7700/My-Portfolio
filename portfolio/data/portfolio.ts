@@ -4,17 +4,14 @@ import {
   Mail, 
   MapPin, 
   Briefcase, 
-  GraduationCap, 
   Award, 
   TrendingUp, 
   LayoutDashboard, 
   Zap, 
-  Sparkles,
   BarChart2,
   Database,
   Layers,
-  Brain,
-  History
+  Brain
 } from "lucide-react";
 
 export const portfolioData = {

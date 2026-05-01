@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export default function CyberBackground() {

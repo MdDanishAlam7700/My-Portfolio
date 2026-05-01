@@ -1,16 +1,14 @@
 "use client";
 
-import { useRef, useMemo, Suspense } from "react";
+import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 function ParticleField() {
   const meshRef = useRef<THREE.Points>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-
   const count = 3000;
 
-  const [positions, colors] = useMemo(() => {
+  const [[positions, colors]] = useState(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
 
@@ -34,7 +32,7 @@ function ParticleField() {
       }
     }
     return [pos, col];
-  }, []);
+  });
 
   useFrame((state) => {
     if (!meshRef.current) return;

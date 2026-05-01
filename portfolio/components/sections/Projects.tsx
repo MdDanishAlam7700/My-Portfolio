@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useMotionValue as motionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import SectionHeading from "@/components/ui/SectionHeading";
-import GlassCard from "@/components/ui/GlassCard";
 import NeonButton from "@/components/ui/NeonButton";
 import { ExternalLink, Code2, X, Globe, Layers } from "lucide-react";
 

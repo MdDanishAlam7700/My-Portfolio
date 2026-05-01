@@ -3,21 +3,21 @@
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Sphere, MeshWobbleMaterial, Points, PointMaterial, Float } from "@react-three/drei";
-import { useRef, useMemo, useEffect, useState, Suspense } from "react";
+import { useRef, useEffect, useState, Suspense } from "react";
 
 /* ================= PARTICLES ================= */
 function Stars() {
-  const ref = useRef<any>(null);
+  const ref = useRef<THREE.Points>(null);
 
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const arr = new Float32Array(6000);
     for (let i = 0; i < 6000; i++) {
       arr[i] = (Math.random() - 0.5) * 30;
     }
     return arr;
-  }, []);
+  });
 
-  useFrame((state) => {
+  useFrame(() => {
     if (ref.current) {
       ref.current.rotation.y += 0.0001;
       ref.current.rotation.x += 0.00005;
@@ -40,8 +40,8 @@ function Stars() {
 
 /* ================= PLANET ================= */
 function Planet() {
-  const mesh = useRef<any>(null);
-  const group = useRef<any>(null);
+  const mesh = useRef<THREE.Mesh>(null);
+  const group = useRef<THREE.Group>(null);
 
   useFrame((state) => {
     if (!mesh.current || !group.current) return;

@@ -4,14 +4,9 @@ import { motion } from "framer-motion";
 import { Download, ArrowRight, MousePointer2, Sparkles } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import NeonButton from "@/components/ui/NeonButton";
-import dynamic from "next/dynamic";
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
-
-// Dynamically import Planet to avoid SSR issues with Three.js
-const Planet = dynamic(() => import("@/components/Planet"), { ssr: false });
 
 export default function Hero() {
+
   const { hero, personal } = portfolioData;
 
   return (
@@ -81,26 +76,20 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="lg:col-span-2 hidden lg:flex flex-col gap-12"
           >
-            {/* 3D Planet Visual */}
+            {/* Visual Weight - Replaced heavy Canvas with a subtle glow to show background planet */}
             <div className="relative h-[400px] w-full flex items-center justify-center">
-              <div className="absolute inset-0 z-0">
-                <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                  <Suspense fallback={null}>
-                    <ambientLight intensity={0.5} />
-                    <pointLight position={[10, 10, 10]} intensity={2} />
-                    <Planet />
-                  </Suspense>
-                </Canvas>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/10 via-transparent to-neon-purple/10 blur-[100px] rounded-full animate-pulse-glow" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-neon-blue/20 blur-[60px] rounded-full animate-pulse" />
             </div>
 
             <div className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-sm relative z-10">
               <div className="text-[10px] font-mono text-neon-blue tracking-[0.4em] uppercase mb-4 opacity-50">Identity</div>
               <p className="text-white text-sm leading-relaxed font-light italic">
-                "Solving real-world business problems through data-driven architectures, 
-                automated financial models, and strategic AI integration."
+                &quot;Solving real-world business problems through data-driven architectures, 
+                automated financial models, and strategic AI integration.&quot;
               </p>
             </div>
+
 
             <div className="flex items-center gap-4 px-8">
               <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/10" />
