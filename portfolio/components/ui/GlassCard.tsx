@@ -53,12 +53,16 @@ export default function GlassCard({
     >
       {/* 1% Performance: Use motion.div with useTransform for the glow spot */}
       <motion.div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-screen"
         style={{ background }}
       />
 
       {/* Cyberpunk Grid/Pattern Overlay (Very subtle) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      {/* Liquid Glossy Reflection */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute -inset-x-full top-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent skew-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none" />
 
       {/* Border Glow Accent */}
       <div 

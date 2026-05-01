@@ -267,6 +267,7 @@ export default function Global3DBackground() {
         }}
         dpr={[1, 1.5]} // Capped for performance
         shadows={false}
+        eventSource={typeof window !== 'undefined' ? document.body : undefined}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.2} />

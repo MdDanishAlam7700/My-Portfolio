@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { Download, ArrowRight, MousePointer2, Sparkles } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import NeonButton from "@/components/ui/NeonButton";
+import { Canvas } from "@react-three/fiber";
+import dynamic from "next/dynamic";
+
+const Planet = dynamic(() => import("@/components/ui/Planet"), { ssr: false });
 
 export default function Hero() {
 
@@ -76,10 +80,12 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="lg:col-span-2 hidden lg:flex flex-col gap-12"
           >
-            {/* Visual Weight - Replaced heavy Canvas with a subtle glow to show background planet */}
-            <div className="relative h-[400px] w-full flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/10 via-transparent to-neon-purple/10 blur-[100px] rounded-full animate-pulse-glow" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-neon-blue/20 blur-[60px] rounded-full animate-pulse" />
+            {/* 3D Planet Interactive Element */}
+            <div className="relative h-[400px] w-full flex items-center justify-center cursor-move">
+              <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/10 via-transparent to-neon-purple/10 blur-[100px] rounded-full" />
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}>
+                <Planet />
+              </Canvas>
             </div>
 
             <div className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-sm relative z-10">
