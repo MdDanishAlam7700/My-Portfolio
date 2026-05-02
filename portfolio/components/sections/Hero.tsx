@@ -4,12 +4,8 @@ import { motion } from "framer-motion";
 import { Download, ArrowRight, MousePointer2, Sparkles } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import NeonButton from "@/components/ui/NeonButton";
-import { Canvas } from "@react-three/fiber";
-import dynamic from "next/dynamic";
 
 import { useState, useEffect } from "react";
-
-const Planet = dynamic(() => import("@/components/ui/Planet"), { ssr: false });
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -83,20 +79,9 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="lg:col-span-2 hidden lg:flex flex-col gap-12"
           >
-            {/* 3D Planet Interactive Element */}
-            <div className="relative h-[400px] w-full flex items-center justify-center cursor-move">
+            {/* 3D Planet Interactive Element (Removed per user request) */}
+            <div className="relative h-[400px] w-full flex items-center justify-center">
               <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/10 via-transparent to-neon-purple/10 blur-[100px] rounded-full" />
-              {mounted && (
-                <div className="absolute inset-0">
-                  <Canvas
-                    camera={{ position: [0, 0, 5], fov: 45 }}
-                    gl={{ antialias: false, alpha: true }}
-                    dpr={[1, 1.5]}
-                  >
-                    <Planet />
-                  </Canvas>
-                </div>
-              )}
             </div>
 
             <div className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-sm relative z-10">
