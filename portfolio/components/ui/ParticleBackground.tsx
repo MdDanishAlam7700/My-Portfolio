@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, Suspense } from "react";
+import { useRef, useState, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -116,13 +116,25 @@ function FloatingRing2() {
 }
 
 export default function ParticleBackground() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden">
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          background: `radial-gradient(circle at 15% 25%, rgba(157, 0, 255, 0.12) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(0, 240, 255, 0.12) 0%, transparent 45%)`,
+          filter: "blur(80px)"
+        }}
+      />
       <Canvas
-        dpr={[1, 2]}
+        dpr={1}
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 8], fov: 60 }}
-        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: false, alpha: true }}
         style={{ background: "transparent", pointerEvents: "none" }}
       >
         <Suspense fallback={null}>
