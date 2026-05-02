@@ -64,11 +64,18 @@ export default function GlassCard({
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       <div className="absolute -inset-x-full top-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent skew-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none" />
 
-      {/* Border Glow Accent */}
+      {/* Base Neon Tinted Border (Always visible) */}
       <div 
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none rounded-[24px]`}
+        className="absolute inset-0 rounded-[24px] border-[1.5px] transition-colors duration-500 pointer-events-none opacity-50"
+        style={{ borderColor: glowColors.border }}
+      />
+
+      {/* Hover Intense Neon Border + Inner/Outer Glow */}
+      <div 
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none rounded-[24px] border-[1.5px]`}
         style={{
-          boxShadow: `inset 0 0 40px ${glowColors.border.replace('0.3', '0.03')}`,
+          borderColor: glowColors.border,
+          boxShadow: `0 0 20px ${glowColors.border}, inset 0 0 20px ${glowColors.border.replace('0.3', '0.1').replace('0.35', '0.1')}`,
         }}
       />
 

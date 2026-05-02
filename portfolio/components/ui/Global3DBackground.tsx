@@ -104,14 +104,15 @@ function InteractivePlanet() {
     meshRef.current.rotation.y = time * 0.15;
     
     const isMobile = window.innerWidth < 768;
+    // Position planet on the right side, vertically centered
     const baseX = isMobile ? 0 : 3.5;
-    const baseY = isMobile ? 3 : 1.5;
+    const baseY = isMobile ? 1.5 : -0.5;
     
-    const targetX = baseX + state.mouse.x * 0.5;
-    const targetY = baseY + state.mouse.y * 0.5;
+    const targetX = baseX + state.mouse.x * 1.5;
+    const targetY = baseY + state.mouse.y * 1.5;
     
     groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.05);
-    const parallaxOffset = -scrollY * 0.005;
+    const parallaxOffset = -scrollY * 0.01;
     const baseTargetY = targetY + parallaxOffset;
     groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, baseTargetY, 0.05);
     
@@ -120,7 +121,7 @@ function InteractivePlanet() {
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={2.8}>
       <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.4}>
         <Sphere ref={meshRef} args={[1.5, 32, 32]} scale={1.2}>
           <meshStandardMaterial color="#111111" metalness={0.9} roughness={0.1} emissive="#00f0ff" emissiveIntensity={0.15} />
@@ -149,7 +150,7 @@ export default function Global3DBackground() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="fixed inset-0 z-[-1] bg-black pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 z-0 bg-black pointer-events-none overflow-hidden">
       <div 
         className="absolute inset-0 opacity-20"
         style={{
