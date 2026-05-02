@@ -30,44 +30,46 @@ export default function Planet() {
 
   return (
     <group>
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[5, 5, 8]} intensity={2} color="#ffffff" />
+      <directionalLight position={[-5, -5, -5]} intensity={0.5} color="#a855f7" />
+      
       <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
         {/* Core Planet */}
-        <Sphere ref={meshRef} args={[1, 64, 64]} scale={2.4}>
+        <Sphere ref={meshRef} args={[1, 64, 64]} scale={1.8}>
           <MeshDistortMaterial
             color="#050505"
             speed={2}
-            distort={0.2}
+            distort={0.15}
             radius={1}
-            metalness={1}
-            roughness={0.1}
+            metalness={0.8}
+            roughness={0.2}
             emissive="#00f0ff"
             emissiveIntensity={0.2}
-            transparent
-            opacity={0.9}
           />
         </Sphere>
         
         {/* Atmospheric Glow Shell */}
-        <Sphere ref={glowRef} args={[1, 32, 32]} scale={2.6}>
+        <Sphere ref={glowRef} args={[1, 32, 32]} scale={1.95}>
           <meshBasicMaterial 
             color="#00f0ff" 
             wireframe 
             transparent 
-            opacity={0.05} 
+            opacity={0.08} 
             side={THREE.DoubleSide}
           />
         </Sphere>
 
         {/* Outer Rim Light */}
-        <Sphere args={[1, 32, 32]} scale={2.45}>
+        <Sphere args={[1, 32, 32]} scale={1.85}>
           <meshPhongMaterial
             color="#00f0ff"
             transparent
-            opacity={0.1}
-            shininess={100}
+            opacity={0.15}
+            shininess={80}
             specular="#ffffff"
             emissive="#00f0ff"
-            emissiveIntensity={0.5}
+            emissiveIntensity={0.3}
           />
         </Sphere>
       </Float>
