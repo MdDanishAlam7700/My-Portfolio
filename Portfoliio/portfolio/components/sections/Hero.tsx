@@ -5,11 +5,7 @@ import { Download, ArrowRight, MousePointer2, Sparkles } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import NeonButton from "@/components/ui/NeonButton";
 
-import { useState, useEffect } from "react";
-
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   const { hero, personal } = portfolioData;
 
   return (
